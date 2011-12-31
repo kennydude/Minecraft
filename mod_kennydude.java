@@ -1,6 +1,7 @@
-package net.minecraft.src;
-
 import net.minecraft.src.*;
+import net.minecraft.src.ModLoader;
+import net.minecraft.src.Block;
+import net.minecraft.src.CreativeAPI;
 import me.kennydude.mod.ModConfig;
 
 public class mod_kennydude extends BaseMod
@@ -31,7 +32,7 @@ public class mod_kennydude extends BaseMod
 
 		bI = mcfg.getInt("slippyBlock", 181);
 		if(bI > 0){
-			slippy = (new SlippyBlock(bI, 86)).setBlockName("SlippyBlock").setHardness(0.5F);
+			slippy = (new SlippyBlock(bI, 86)).setBlockName("SlippyBlock");
 			ModLoader.RegisterBlock(slippy);
 			ModLoader.AddName(slippy, "Slippy Block");
 			addBlock(slippy);
@@ -39,7 +40,7 @@ public class mod_kennydude extends BaseMod
 
 		bI = mcfg.getInt("superLight", 182);
 		if(bI > 0){
-			superLight = (new SuperLight(bI)).setHardness(3F).setBlockName("SuperLight").setLightValue(5F);
+			superLight = (new SuperLight(bI)).setBlockName("SuperLight");
 			ModLoader.RegisterBlock(superLight);
 			ModLoader.AddName(superLight, "Super Light");
 			addBlock(superLight);
@@ -47,7 +48,7 @@ public class mod_kennydude extends BaseMod
 
 		bI = mcfg.getInt("minecartGenerator", 183);
 		if(bI > 0){
-			mcg = (new MinecartGeneratorBlock(bI)).setHardness(3F).setBlockName("MineCartGen").setLightValue(5F);
+			mcg = (new MinecartGeneratorBlock(bI)).setBlockName("MineCartGen");
 			ModLoader.RegisterBlock(mcg);
 			ModLoader.AddName(mcg, "Minecart Generator");
 			addBlock(mcg);

@@ -11,5 +11,6 @@ public class SuperLight extends Block
     public SuperLight(int i)
     {
         super(i, Material.rock);
+		setLightValue(5F);
     }
 }
