@@ -16,6 +16,7 @@ public class mod_kennydude extends BaseMod
 	public static Block er;
 
 	public static Block dmp;
+	public static Block dms;
 
     public mod_kennydude ()
     {
@@ -68,6 +69,15 @@ public class mod_kennydude extends BaseMod
 			ModLoader.RegisterBlock(dmp);
 			ModLoader.AddName(dmp, "Directed Minecart Programmer Rail");
 			addBlock(dmp);
+		}
+
+		bI = mcfg.getInt("directedSwitcher", 210);
+		if(bI > 0){
+			dms = (new DirectedChangeBlock(bI)).setBlockName("MineSwapper");
+			// TODO: dmp.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/kennydude/ejector.png"); 
+			ModLoader.RegisterBlock(dms);
+			ModLoader.AddName(dms, "Directed Minecart Switcher");
+			addBlock(dms);
 		}
 
 		mcfg.saveConfig();

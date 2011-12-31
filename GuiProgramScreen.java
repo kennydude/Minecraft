@@ -76,7 +76,7 @@ public class GuiProgramScreen extends GuiScreen
 
 	public void onGuiClosed() //states what happens when the gui is closed
 	{
-
+		Keyboard.enableRepeatEvents(false);
 	}
 
 	public void drawScreen(int i, int j, float f) //What is displayed in the gui
