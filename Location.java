@@ -21,9 +21,8 @@ public class Location{
 	}
 
 	public static Location getValidLocation(Location block, int searchRange, World world) {
-		int real_block = world.getBlockId(block.x, block.y, block.z);
-		
-		if (isSolidMaterial(real_block) ) {
+	
+		if (isSolidMaterial(block) ) {
 				return new Location(world, block.x+1, block.y, block.z +1);
 		}
 
@@ -31,8 +30,7 @@ public class Location{
 			for (int dx = -(range); dx <= range; dx++){
 				for (int dy = -(range); dy <= range; dy++){
 					for (int dz = -(range); dz <= range; dz++){
-						int b = world.getBlockId(block.x + dx, block.y + dy, block.z + dz);
-						if (isSolidMaterial(b) ) {
+						if (isSolidMaterial(new Location(block.x + dx, block.y + dy, block.z + dz)) ) {
 							return new Location(world, block.x + dx + 1, block.y + dy, block.z + 1 + dz);
 						}
 					}
@@ -42,11 +40,9 @@ public class Location{
 		return null;
 	}
 
-	public static boolean isSolidMaterial(int m) {
+	public static boolean isSolidMaterial(Location m) {
 		return
-			m == 3 ||
-			m == 1 ||
-			m == 2;
+			world.getBlockMaterial(m.x, m.y, m.z).isSolid();
 		// Stone/Grass/Dirt Block IDs
 	}
 }

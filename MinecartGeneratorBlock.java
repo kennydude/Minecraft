@@ -137,7 +137,7 @@ public class MinecartGeneratorBlock extends Block
             double d1 = (double)j + 0.5D;
             double d2 = (double)k + (double)j1 * 0.59999999999999998D + 0.5D;
 			/* END OF COPY */
-			world.entityJoinedWorld(new EntityMinecart(world, d, d1, d2, minecartType));
+			world.spawnEntityInWorld(new EntityDirectedMinecart(world, d, d1, d2));
         }
     }
 }

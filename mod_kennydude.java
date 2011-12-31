@@ -15,6 +15,8 @@ public class mod_kennydude extends BaseMod
 	public static Block mcg;
 	public static Block er;
 
+	public static Block dmp;
+
     public mod_kennydude ()
     {
 		int bI = mcfg.getInt("kennydudeBlock", 200);
@@ -47,7 +49,7 @@ public class mod_kennydude extends BaseMod
 			mcg = (new MinecartGeneratorBlock(bI)).setHardness(3F).setBlockName("MineCartGen").setLightValue(5F);
 			ModLoader.RegisterBlock(mcg);
 			ModLoader.AddName(mcg, "Minecart Generator");
-			addBlock(slippy);
+			addBlock(mcg);
 		}
 
 		bI = mcfg.getInt("ejectorRail", 208);
@@ -57,6 +59,15 @@ public class mod_kennydude extends BaseMod
 			ModLoader.RegisterBlock(er);
 			ModLoader.AddName(er, "Minecart Ejector Rail");
 			addBlock(er);
+		}
+
+		bI = mcfg.getInt("directedProgrammer", 209);
+		if(bI > 0){
+			dmp = (new ProgramDirectedRailBlock(bI)).setBlockName("MineProgrammer");
+			// TODO: dmp.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/kennydude/ejector.png"); 
+			ModLoader.RegisterBlock(dmp);
+			ModLoader.AddName(dmp, "Directed Minecart Programmer Rail");
+			addBlock(dmp);
 		}
 
 		mcfg.saveConfig();
