@@ -1,47 +1,76 @@
 package net.minecraft.src;
 
 import net.minecraft.src.*;
+import me.kennydude.mod.ModConfig;
 
 public class mod_kennydude extends BaseMod
 {
 
-	public static final Block slippy = (new SlippyBlock(201, 86)).setBlockName("SlippyBlock").setHardness(0.5F);
-    public static final Block yourBlock = (new kennydudeBlock(200, 86)).setBlockName("KennydudeBlock");
-	public static final Block superLight = (new SuperLight(202)).setHardness(3F).setBlockName("SuperLight").setLightValue(5F);
+	public static final ModConfig mcfg = new ModConfig().loadConfig("mod_kennydude.cfg");
 
-	public static final Block mcg = (new MinecartGeneratorBlock(207)).setHardness(3F).setBlockName("MineCartGen").setLightValue(5F);
-	public static final Block er = (new EjectRailBlock(208)).setBlockName("MineEject");
+	public static Block slippy;
+    public static Block yourBlock;
+	public static Block superLight;
+
+	public static Block mcg;
+	public static Block er;
 
     public mod_kennydude ()
     {
+		int bI = mcfg.getInt("kennydudeBlock", 200);
+		if(bI > 0){
+			yourBlock = (new kennydudeBlock(bI, 86)).setBlockName("KennydudeBlock");
+			yourBlock.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/kennydude/block.png");
+			ModLoader.RegisterBlock(yourBlock);
+			ModLoader.AddName(yourBlock, "Kennydude Block"); 
+			addBlock(yourBlock);
+		}
 
-		yourBlock.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/kennydude/block.png");
-		er.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/kennydude/ejector.png"); 
-		
-		ModLoader.RegisterBlock(yourBlock);
-    	ModLoader.AddName(yourBlock, "Kennydude Block");  
+		bI = mcfg.getInt("slippyBlock", 201);
+		if(bI > 0){
+			slippy = (new SlippyBlock(bI, 86)).setBlockName("SlippyBlock").setHardness(0.5F);
+			ModLoader.RegisterBlock(slippy);
+			ModLoader.AddName(slippy, "Slippy Block");
+			addBlock(slippy);
+		}
 
-		ModLoader.RegisterBlock(slippy);
-		ModLoader.AddName(slippy, "Slippy Block");
+		bI = mcfg.getInt("superLight", 202);
+		if(bI > 0){
+			superLight = (new SuperLight(bI)).setHardness(3F).setBlockName("SuperLight").setLightValue(5F);
+			ModLoader.RegisterBlock(superLight);
+			ModLoader.AddName(superLight, "Super Light");
+			addBlock(superLight);
+		}
 
-		ModLoader.RegisterBlock(superLight);
-		ModLoader.AddName(superLight, "Super Light");
+		bI = mcfg.getInt("minecartGenerator", 207);
+		if(bI > 0){
+			mcg = (new MinecartGeneratorBlock(bI)).setHardness(3F).setBlockName("MineCartGen").setLightValue(5F);
+			ModLoader.RegisterBlock(mcg);
+			ModLoader.AddName(mcg, "Minecart Generator");
+			addBlock(slippy);
+		}
 
-		ModLoader.RegisterBlock(mcg);
-		ModLoader.AddName(mcg, "Minecart Generator");
+		bI = mcfg.getInt("ejectorRail", 208);
+		if(bI > 0){
+			er = (new EjectRailBlock(bI)).setBlockName("MineEject");
+			er.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/kennydude/ejector.png"); 
+			ModLoader.RegisterBlock(er);
+			ModLoader.AddName(er, "Minecart Ejector Rail");
+			addBlock(er);
+		}
 
-		ModLoader.RegisterBlock(er);
-		ModLoader.AddName(er, "Minecart Ejector Rail");
-	
-
-		CreativeAPI.addBlock(yourBlock);
-		CreativeAPI.addBlock(slippy);
-		CreativeAPI.addBlock(superLight);
-		CreativeAPI.addBlock(mcg);
-		CreativeAPI.addBlock(er);
+		mcfg.saveConfig();
 	}
 	public void load(){    
     }
+
+	public void addBlock(Block id){
+		try{
+			CreativeAPI.addBlock(id);
+		} catch (NoClassDefFoundError e) {
+			ModLoader.getLogger().fine((new StringBuilder("Creative API not found! ")).toString());
+        }
+	}
 
     public String getVersion()
     {
