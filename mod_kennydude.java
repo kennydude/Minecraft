@@ -20,7 +20,7 @@ public class mod_kennydude extends BaseMod
 
     public mod_kennydude ()
     {
-		int bI = mcfg.getInt("kennydudeBlock", 200);
+		int bI = mcfg.getInt("kennydudeBlock", 180);
 		if(bI > 0){
 			yourBlock = (new kennydudeBlock(bI, 86)).setBlockName("KennydudeBlock");
 			yourBlock.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/kennydude/block.png");
@@ -29,7 +29,7 @@ public class mod_kennydude extends BaseMod
 			addBlock(yourBlock);
 		}
 
-		bI = mcfg.getInt("slippyBlock", 201);
+		bI = mcfg.getInt("slippyBlock", 181);
 		if(bI > 0){
 			slippy = (new SlippyBlock(bI, 86)).setBlockName("SlippyBlock").setHardness(0.5F);
 			ModLoader.RegisterBlock(slippy);
@@ -37,7 +37,7 @@ public class mod_kennydude extends BaseMod
 			addBlock(slippy);
 		}
 
-		bI = mcfg.getInt("superLight", 202);
+		bI = mcfg.getInt("superLight", 182);
 		if(bI > 0){
 			superLight = (new SuperLight(bI)).setHardness(3F).setBlockName("SuperLight").setLightValue(5F);
 			ModLoader.RegisterBlock(superLight);
@@ -45,7 +45,7 @@ public class mod_kennydude extends BaseMod
 			addBlock(superLight);
 		}
 
-		bI = mcfg.getInt("minecartGenerator", 207);
+		bI = mcfg.getInt("minecartGenerator", 183);
 		if(bI > 0){
 			mcg = (new MinecartGeneratorBlock(bI)).setHardness(3F).setBlockName("MineCartGen").setLightValue(5F);
 			ModLoader.RegisterBlock(mcg);
@@ -53,7 +53,7 @@ public class mod_kennydude extends BaseMod
 			addBlock(mcg);
 		}
 
-		bI = mcfg.getInt("ejectorRail", 208);
+		bI = mcfg.getInt("ejectorRail", 184);
 		if(bI > 0){
 			er = (new EjectRailBlock(bI)).setBlockName("MineEject");
 			er.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/kennydude/ejector.png"); 
@@ -62,19 +62,19 @@ public class mod_kennydude extends BaseMod
 			addBlock(er);
 		}
 
-		bI = mcfg.getInt("directedProgrammer", 209);
+		bI = mcfg.getInt("directedProgrammer", 185);
 		if(bI > 0){
 			dmp = (new ProgramDirectedRailBlock(bI)).setBlockName("MineProgrammer");
-			// TODO: dmp.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/kennydude/ejector.png"); 
+			dmp.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/kennydude/programmer.png"); 
 			ModLoader.RegisterBlock(dmp);
 			ModLoader.AddName(dmp, "Directed Minecart Programmer Rail");
 			addBlock(dmp);
 		}
 
-		bI = mcfg.getInt("directedSwitcher", 210);
+		bI = mcfg.getInt("directedSwitcher", 186);
 		if(bI > 0){
 			dms = (new DirectedChangeBlock(bI)).setBlockName("MineSwapper");
-			// TODO: dmp.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/kennydude/ejector.png"); 
+			dms.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/kennydude/switcher.png"); 
 			ModLoader.RegisterBlock(dms);
 			ModLoader.AddName(dms, "Directed Minecart Switcher");
 			addBlock(dms);

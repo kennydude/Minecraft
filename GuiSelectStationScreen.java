@@ -37,8 +37,7 @@ public class GuiSelectStationScreen extends GuiScreen
 		// Add all stations!
 		int i = 0;
 		for(String station : cart.stations){
-			System.out.println(station);
-        	controlList.add(new GuiButton(i, width / 2 - 100, 60 + (40*i), station));
+        	controlList.add(new GuiButton(i, width / 2 - 100, 60 + (30*i), station));
 			i = i + 1;
 		}
 	}
@@ -65,7 +64,6 @@ public class GuiSelectStationScreen extends GuiScreen
             return;
         }
 		cart.station = cart.stations.get(guibutton.id);
-		System.out.println(cart.station);
 		mc.displayGuiScreen(null);
 	}
 
